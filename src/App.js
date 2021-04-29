@@ -83,7 +83,8 @@ function ChatRoom() {
     firebase.firestore().collection("messages").add({
       text: formVal,
       date: firebase.firestore.FieldValue.serverTimestamp(),
-      uid
+      uid,
+      username: auth.currentUser.displayName
 
     }).then( () => console.log('successful post by', auth.currentUser.displayName))
     .catch( err => console.log(err))
@@ -96,7 +97,7 @@ function ChatRoom() {
     <>
     <div>
       {messages && messages.map(msg => 
-      <ChatMessage key={msg.id} message={msg} />
+      <ChatMessage key={msg.id} message={msg} date={msg.date} username={msg.username}/>
       )}
     </div>
 
@@ -109,12 +110,13 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  const { text, uid } = props.message;
+  const { text, uid, date, username } = props.message;
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+  console.log('chat msg props', props)
   return (
     <div className={`message ${messageClass}`}>
     {/* add image here */}
-      <p>{text}</p>{auth.currentUser.displayName}
+      <p>{text}</p>{username}
     </div>
   )
 }
