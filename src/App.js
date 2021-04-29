@@ -6,8 +6,9 @@ import 'firebase/firestore';
 import 'firebase/auth'
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData, useCollection } from 'react-firebase-hooks/firestore';
 import reactDom from "react-dom";
+
+import { IoSend } from 'react-icons/io5';
 
 firebase.initializeApp({
 
@@ -95,7 +96,7 @@ function ChatRoom() {
   
   return (
     <>
-    <div>
+    <div className="all-messages">
       {messages && messages.map(msg => 
       <ChatMessage key={msg.id} message={msg} date={msg.date} username={msg.username}/>
       )}
@@ -103,7 +104,7 @@ function ChatRoom() {
 
     <form>
       <input value={formVal} onChange={(e) => setFormVal(e.target.value)}/>
-      <button type="submit" onClick={sendMessage}>🟢</button>
+      <button className="submit-button" type="submit" onClick={sendMessage}><IoSend /></button>
     </form>
     </>
   )
