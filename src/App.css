@@ -11,9 +11,6 @@ p {
   margin: 3px;
 }
 
-span{
-  
-}
 .message{
   border-style: solid;
   border-radius: 10px;
@@ -24,27 +21,33 @@ span{
 .sent {
   color: grey;
   text-align: right;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
-.receievd {
+.received {
   color: black;
   text-align: left;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 form {
   margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
   
   width: 60%;
   height: 5em;
-  margin: auto;
-  display: block;
-  opacity: 65%;
+  margin: 0;
+  padding: 0;
+  /* display: inline-block; */
   border-radius: 10px;
-  white-space: nowrap
-  
+ 
 }
 
 .all-messages{
@@ -54,7 +57,10 @@ input {
   overflow:scroll;
   padding-top: 1em;
   padding-bottom: 1em;
+ 
 }
+
+
 button{
   margin: auto;
   display: block;
@@ -70,8 +76,24 @@ button{
   font-size: 1.5rem;
   text-align: center;
   color: white;
+  margin: 0;
+  padding: 0;
+ 
 }
 
 .submit-button:hover{
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+@media only screen and (max-width: 350px) {
+  .all-messages{
+    height:24em;
+  }
+
+  .submit-button{
+    height: 3rem;
+    width: 3rem;
+    font-size: 1rem;
+  }
+  
 }
