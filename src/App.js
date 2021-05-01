@@ -103,7 +103,7 @@ function ChatRoom() {
     </div>
 
     <form>
-      <input value={formVal} onChange={(e) => setFormVal(e.target.value)}/>
+      <input placeholder="Your message..." value={formVal} onChange={(e) => setFormVal(e.target.value)}/>
       <button className="submit-button" type="submit" onClick={sendMessage}><IoSend /></button>
     </form>
     </>
@@ -117,7 +117,11 @@ function ChatMessage(props) {
   return (
     <div className={`message ${messageClass}`}>
     {/* add image here */}
-      <p>{text}</p>{username}
+      <p>{text}
+      <br></br>
+      <span>{username}</span>
+      </p>
+      
     </div>
   )
 }
