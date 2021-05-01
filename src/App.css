@@ -97,3 +97,12 @@ button{
   }
   
 }
+
+@media only screen and (max-width: 375px) {
+  .all-messages{
+    height:35em;
+  }
+
+ 
+  
+}
