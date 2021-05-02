@@ -49,7 +49,7 @@ p {
 }
 
 form {
-  margin-top: 1em;
+  margin-top: 5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,12 +77,18 @@ input {
 
 .all-messages{
   display:flex;
-  width:100%;
-  height:30em;
+  width:95%;
+  height:26em;
   overflow:scroll;
   padding-top: 1em;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
   flex-direction: column-reverse;
+  border-bottom: solid rgba(139, 139, 139, 0.39);
+  border-top: solid rgba(139, 139, 139, 0.39);
+  border-radius: 10px;
+  /* margin-right: 1rem; */
+  margin-left: 3rem;
+  
  
 }
 
@@ -131,4 +137,44 @@ button{
 
  
   
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  /* background: rgb(0,36,27); */
+  /* background: linear-gradient(90deg, rgba(0,36,27,1) 0%, rgba(9,121,57,1) 35%, rgba(194,255,174,1) 100%); */
+  margin-bottom: 2rem;
+  height: 5.5rem;
+  overflow: hidden;
+}
+
+.left{
+}
+
+.right{
+}
+
+.middle{
+}
+
+.prof-photo{
+  border-radius: 50px;
+  height: 3.3rem;
+  width: 3.3rem;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.hamburger{
+  height: 3rem;
+  width: 3rem;
+  margin: .5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.logo{
+  height: 6rem;
+  width: 7rem;
 }
