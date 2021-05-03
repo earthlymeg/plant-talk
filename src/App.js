@@ -10,6 +10,10 @@ import reactDom from "react-dom";
 
 import { IoSend } from 'react-icons/io5';
 import { FcMenu } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
+
+
+import Modal from 'react-modal';
 import Logo from './assets/plant-talk-logo.png'
 
 firebase.initializeApp({
@@ -24,6 +28,20 @@ firebase.initializeApp({
 
 })
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement('#root')
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
@@ -36,14 +54,15 @@ function App() {
   return (
     <div className="App">
       <header>
-       
+
       </header>
-      
+      {user && <NavBar />}
       <section>
         {/* if user is signed in display chat room else display sign in */}
-        <NavBar/>
+       
+        {/* {user && <OverLay/>} */}
         {user ? <ChatRoom /> : <SignIn />}
-        <SignOut />
+       
       </section>
     </div>
   );
@@ -57,7 +76,15 @@ function SignIn() {
   }
 
   return (
-    <button onClick={signInWithGoogle}>Sign In With Google</button>
+    <div className="sign-in">
+      <div className="sign-in-decorate">
+        A space for conscious & compassionate communication
+        <img src={Logo} className="sI-logo"></img>
+      </div>
+      <div className="google-button">
+        <button onClick={signInWithGoogle} className="google-legit-button">Sign in with <FcGoogle /></button>
+      </div>
+    </div>
   )
 }
 
@@ -135,28 +162,79 @@ function NavBar() {
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
 
-if (user != null) {
-  name = user.displayName;
-  email = user.email;
-  photoUrl = user.photoURL;
-  emailVerified = user.emailVerified;
-  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                   // this value to authenticate with your backend server, if
-                   // you have one. Use User.getToken() instead.
-}
+  if (user != null) {
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+  }
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [overlayIsOpen, setOverlayOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
 
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  
+  function toggleOverlay() {
+    setOverlayOpen(!overlayIsOpen);
+  }
+
+  
   return (
     <div class="nav">
       <div class="left">
-      <FcMenu class="hamburger"/>
+        <FcMenu class="hamburger" onClick={toggleOverlay}/>
+        {overlayIsOpen && <OverLay/>}
       </div>
       <div class="middle">
-      <img src={Logo} alt="" class="logo"/>
+        <img src={Logo} alt="" class="logo" />
 
       </div>
       <div class="right">
-      {photoUrl && <img src={photoUrl} alt="" className="prof-photo"/>}
+        {photoUrl && <img src={photoUrl} alt="" className="prof-photo" onClick={openModal} />}
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
 
+          <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
+          <SignOut />
+          <button onClick={closeModal}>close</button>
+        </Modal>
+
+      </div>
+    </div>
+  )
+}
+
+function OverLay() {
+
+  return(
+
+    <div className="overlay">
+      <div className="chat-select">
+        Private Chat
+      </div>
+      <div className="chat-select">
+      Private Chat
+      </div>
+      <div className="chat-select">
+      Private Chat
       </div>
     </div>
   )
