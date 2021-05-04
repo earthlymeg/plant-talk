@@ -3,30 +3,27 @@ body {
 }
 
 .sign-in {
-  display: flex;
+  /* display: flex; */
   height: 100vh;
-}
-
-.sign-in-decorate {
-  width: 50em;
-  height: 100vh;
-  background-color: #ffffff;
-  background-image: linear-gradient(315deg, #ffffff 0%, #5899e2 74%);
+  background-color: #dfa375;
+  background-image: linear-gradient(315deg, #dfa375 0%, #c58e7f 74%);
 }
 
 .google-button {
-  width: 50em;
-  height: 100vh;
-  /* position: relative; */
+  background-color: rgba(255, 255, 255, 0.733);
+  width: 50%;
+  height: 60%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 .google-legit-button {
   height: 2.5rem;
   width: 20rem;
   font-size: 30px;
-  position: absolute;
-  display: block;
-  top: 25%;
-  right: 13%;
   font-size: 1.5rem;
   border-radius: 10px;
   cursor: pointer;
@@ -34,15 +31,38 @@ body {
   color: grey;
   border-color: rgba(211, 211, 211, 0.301);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .sI-logo {
   position: absolute;
-  /* top: 30%;
-    left: 17%; */
-  top: 25%;
-  left: 15%;
-  display: block;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.google-button-sml{
+  visibility: hidden;
+  height: 5rem;
+  width: 5rem;
+  font-size: 3rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 5.5rem;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: white;
+  color: grey;
+  border-color: rgba(211, 211, 211, 0.301);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 p {
@@ -146,8 +166,6 @@ button {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
-
-
 .nav {
   display: flex;
   justify-content: space-between;
@@ -200,7 +218,7 @@ button {
   transition: height 0.25s linear;
 }
 
-.chat-select{
+.chat-select {
   height: 1em;
   padding: 1em;
   color: white;
@@ -210,8 +228,15 @@ button {
   cursor: pointer;
 }
 
-.chat-select:hover{
+.chat-select:hover {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sign-in-text {
+  position: relative;
+  top: 15%;
+  left: 20%;
+  font-size: 30px;
 }
 
 @media only screen and (max-width: 1025px) {
@@ -225,6 +250,17 @@ button {
   .all-messages {
     height: 38em;
     /* width: 18em; */
+  }
+}
+
+@media only screen and (max-width: 712px) {
+ 
+  .google-legit-button{
+   display: none;
+  }
+
+  .google-button-sml{
+    visibility: visible;
   }
 }
 
@@ -254,10 +290,3 @@ button {
     font-size: 1rem;
   }
 }
-
-/* @media only screen and (max-width: 375px) {
-  .all-messages {
-    height: 28em;
-    width: 18em;
-  }
-} */
