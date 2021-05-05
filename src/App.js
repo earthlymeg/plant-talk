@@ -246,23 +246,8 @@ function OverLay() {
 function CreateGroup() {
 
 
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
-  function openModal() {
-    setIsOpen(true);
-  }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    console.log('closing modal')
-    setIsOpen(false);
-  }
   const addGroup = () => {
-    prompt('what is the name of your new group chat?');
     const { uid } = auth.currentUser;
 
     //   firebase.firestore().collection("groups").add({
@@ -275,8 +260,24 @@ function CreateGroup() {
     //   }).then(() => console.log('successful post by', auth.currentUser.displayName))
     //     .catch(err => console.log(err))
   }
+
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
-    <div className="add-chat-btn" onClick={openModal}>+
+    <div>
+    <div className="add-chat-btn" onClick={openModal}>+</div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -286,6 +287,7 @@ function CreateGroup() {
       >
 
         <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
+
         <form>
           <input placeholder="Name of Group" />
 
@@ -299,8 +301,11 @@ function CreateGroup() {
         </form>
         <button >Submit</button>
         <button onClick={closeModal}>close</button>
+
       </Modal>
+
     </div>
+    
   )
 }
 
