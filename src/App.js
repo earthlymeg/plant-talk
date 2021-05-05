@@ -45,13 +45,12 @@ Modal.setAppElement('#root')
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-
 function App() {
   //use auth state react/firebase hooks
   const [user] = useAuthState(auth);
 
-
   return (
+
     <div className="App">
       <header>
 
@@ -59,10 +58,10 @@ function App() {
       {user && <NavBar />}
       <section>
         {/* if user is signed in display chat room else display sign in */}
-       
+
         {/* {user && <OverLay/>} */}
         {user ? <ChatRoom /> : <SignIn />}
-       
+
       </section>
     </div>
   );
@@ -81,7 +80,7 @@ function SignIn() {
         <span className="sign-in-text">A space for conscious & <br></br>compassionate communication</span>
         
       </div> */}
-     
+
       <div className="google-button">
         <img src={Logo} className="sI-logo"></img>
         <button onClick={signInWithGoogle} className="google-legit-button">Sign in with <FcGoogle /></button>
@@ -189,17 +188,17 @@ function NavBar() {
   function closeModal() {
     setIsOpen(false);
   }
-  
+
   function toggleOverlay() {
     setOverlayOpen(!overlayIsOpen);
   }
 
-  
+
   return (
     <div class="nav">
       <div class="left">
-        <FcMenu class="hamburger" onClick={toggleOverlay}/>
-        {overlayIsOpen && <OverLay/>}
+        <FcMenu class="hamburger" onClick={toggleOverlay} />
+        {overlayIsOpen && <OverLay />}
       </div>
       <div class="middle">
         <img src={Logo} alt="" class="logo" />
@@ -227,18 +226,80 @@ function NavBar() {
 
 function OverLay() {
 
-  return(
+  return (
 
     <div className="overlay">
       <div className="chat-select">
         Private Chat
       </div>
       <div className="chat-select">
-      Private Chat
+        Private Chat
       </div>
       <div className="chat-select">
-      Private Chat
+        Private Chat
       </div>
+      <CreateGroup />
+    </div>
+  )
+}
+
+function CreateGroup() {
+
+
+  var subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    console.log('closing modal')
+    setIsOpen(false);
+  }
+  const addGroup = () => {
+    prompt('what is the name of your new group chat?');
+    const { uid } = auth.currentUser;
+
+    //   firebase.firestore().collection("groups").add({
+    //     created_by: uid,
+    //     date: firebase.firestore.FieldValue.serverTimestamp(),
+    //     uid,
+    //     name:
+    //     type:
+
+    //   }).then(() => console.log('successful post by', auth.currentUser.displayName))
+    //     .catch(err => console.log(err))
+  }
+  return (
+    <div className="add-chat-btn" onClick={openModal}>+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+
+        <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
+        <form>
+          <input placeholder="Name of Group" />
+
+          <select id="groups" name="groups">
+            <option value="Just For Fun">Just For Fun</option>
+            <option value="Business">Business</option>
+            <option value="Love">Love</option>
+            <option value="Family">Family</option>
+            <option value="Friends">Friends</option>
+          </select>
+        </form>
+        <button >Submit</button>
+        <button onClick={closeModal}>close</button>
+      </Modal>
     </div>
   )
 }
