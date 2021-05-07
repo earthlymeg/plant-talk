@@ -50,19 +50,20 @@ function App() {
   //use auth state react/firebase hooks
   const [user] = useAuthState(auth);
 
+  const updateGroup = (e) => {
+    // e.preventDefault();
+    console.log('update group', e)
+  }
+
   return (
 
     <div className="App">
       <header>
 
       </header>
-      {user && <NavBar />}
+      {user && <NavBar updateGroup={updateGroup}/>}
       <section>
-        {/* if user is signed in display chat room else display sign in */}
-
-        {/* {user && <OverLay/>} */}
         {user ? <ChatRoom /> : <SignIn />}
-
       </section>
     </div>
   );
@@ -110,6 +111,7 @@ function ChatRoom() {
     );
 
   }, []);
+  
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -160,7 +162,7 @@ function ChatMessage(props) {
   )
 }
 
-function NavBar() {
+function NavBar(props) {
 
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
@@ -199,7 +201,7 @@ function NavBar() {
     <div class="nav">
       <div class="left">
         <FcMenu class="hamburger" onClick={toggleOverlay} />
-        {overlayIsOpen && <OverLay />}
+        {overlayIsOpen && <OverLay updateGroup={props.updateGroup}/>}
       </div>
       <div class="middle">
         <img src={Logo} alt="" class="logo" />
@@ -225,7 +227,7 @@ function NavBar() {
   )
 }
 
-function OverLay() {
+function OverLay({updateGroup}) {
 
   //iterate over documnts in group collection and render a chatroomname comnponent for each collection
   const ref = firebase.firestore().collection("groups").orderBy('date');
@@ -255,7 +257,7 @@ function OverLay() {
     <div className="overlay">
       {groups && groups.map(({id, data}) => {
         // console.log('group from iteration', group)
-        return <ChatRoomName key={id} name={data.name}/>
+        return <ChatRoomName key={id} name={data.name} updateGroup={updateGroup} id={id}/>
       })}
       <CreateGroup />
     </div>
@@ -263,10 +265,12 @@ function OverLay() {
 }
 
 
-function ChatRoomName({name}) {
+function ChatRoomName({name, updateGroup, id}) {
+
   return (
     <div className="chat-select">
       {name}
+      <button onClick={() => updateGroup(id)}>Update Group Name</button>
     </div>
   )
 }
