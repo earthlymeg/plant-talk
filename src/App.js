@@ -11,6 +11,7 @@ import reactDom from "react-dom";
 import { IoSend } from 'react-icons/io5';
 import { FcMenu } from "react-icons/fc";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
 
 
 import Modal from 'react-modal';
@@ -261,6 +262,14 @@ function CreateGroup() {
     //     .catch(err => console.log(err))
   }
 
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    data['createdBy'] = auth.currentUser.uid;
+    data['members'] = [auth.currentUser.uid];
+    alert(JSON.stringify(data));
+  }
+
+
   var subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
@@ -277,7 +286,7 @@ function CreateGroup() {
   }
   return (
     <div>
-    <div className="add-chat-btn" onClick={openModal}>+</div>
+      <div className="add-chat-btn" onClick={openModal}>+</div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -287,25 +296,23 @@ function CreateGroup() {
       >
 
         <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
-
-        <form>
-          <input placeholder="Name of Group" />
-
-          <select id="groups" name="groups">
-            <option value="Just For Fun">Just For Fun</option>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register("Name of Group")} />
+          <select {...register("type")} id="groups">
+          <option value="Just For Fun">Just For Fun</option>
             <option value="Business">Business</option>
             <option value="Love">Love</option>
             <option value="Family">Family</option>
             <option value="Friends">Friends</option>
           </select>
+          <input type="submit" />
         </form>
-        <button >Submit</button>
         <button onClick={closeModal}>close</button>
 
       </Modal>
 
     </div>
-    
+
   )
 }
 
