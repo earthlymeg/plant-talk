@@ -227,19 +227,46 @@ function NavBar() {
 
 function OverLay() {
 
+  //iterate over documnts in group collection and render a chatroomname comnponent for each collection
+  const ref = firebase.firestore().collection("groups").orderBy('date');
+  const [groups, setGroups] = useState([]);
+
+
+
+  useEffect(() => {
+    ref.onSnapshot((snap) => {
+      setGroups(snap.docs.map(doc => {
+        let obj = {
+          id: doc.id,
+          data: doc.data()
+        }
+        return obj;
+
+      }));
+
+    }
+    )
+
+  }, []);
+
+
   return (
 
     <div className="overlay">
-      <div className="chat-select">
-        Private Chat
-      </div>
-      <div className="chat-select">
-        Private Chat
-      </div>
-      <div className="chat-select">
-        Private Chat
-      </div>
-      <CreateGroup />
+      {groups && groups.map(({id, data}) => {
+        // console.log('group from iteration', group)
+        return <ChatRoomName key={id} name={data.name}/>
+      })}
+
+    </div>
+  )
+}
+
+
+function ChatRoomName({name}) {
+  return (
+    <div className="chat-select">
+      {name}
     </div>
   )
 }
