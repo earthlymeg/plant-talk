@@ -257,7 +257,7 @@ function OverLay() {
         // console.log('group from iteration', group)
         return <ChatRoomName key={id} name={data.name}/>
       })}
-
+      <CreateGroup />
     </div>
   )
 }
