@@ -49,10 +49,10 @@ const firestore = firebase.firestore();
 function App() {
   //use auth state react/firebase hooks
   const [user] = useAuthState(auth);
-
+  const [currentChat, setCurrentChat] = useState('')
   const updateGroup = (e) => {
-    // e.preventDefault();
-    console.log('update group', e)
+    setCurrentChat(e);
+    console.log('currentchat', currentChat)
   }
 
   return (
@@ -63,7 +63,7 @@ function App() {
       </header>
       {user && <NavBar updateGroup={updateGroup}/>}
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
+        {user ? <ChatRoom groupSelected={currentChat}/> : <SignIn />}
       </section>
     </div>
   );
@@ -98,19 +98,22 @@ function SignOut() {
   )
 }
 
-function ChatRoom() {
+function ChatRoom({groupSelected}) {
 
-  const ref = firebase.firestore().collection("messages").orderBy('date', 'desc');
+  // const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date', 'desc');
+  const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date', 'desc');;
+
   const [messages, setMessages] = useState([]);
   const [formVal, setFormVal] = useState('');
 
   useEffect(() => {
     ref.onSnapshot((snap) => {
       setMessages(snap.docs.map(doc => doc.data()));
+      console.log(groupSelected, 'group selected')
     }
     );
 
-  }, []);
+  }, [groupSelected]);
   
 
   const sendMessage = (e) => {
@@ -122,7 +125,8 @@ function ChatRoom() {
       text: formVal,
       date: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      username: auth.currentUser.displayName
+      username: auth.currentUser.displayName,
+      groupId: groupSelected,
 
     }).then(() => console.log('successful post by', auth.currentUser.displayName))
       .catch(err => console.log(err))
