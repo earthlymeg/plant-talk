@@ -60,9 +60,9 @@ function App() {
       <header>
 
       </header>
-      {user && <NavBar updateGroup={updateGroup}/>}
+      {user && <NavBar updateGroup={updateGroup} />}
       <section>
-        {user ? <ChatRoom groupSelected={currentChat}/> : <SignIn />}
+        {user ? <ChatRoom groupSelected={currentChat} /> : <SignIn />}
       </section>
     </div>
   );
@@ -97,7 +97,7 @@ function SignOut() {
   )
 }
 
-function ChatRoom({groupSelected}) {
+function ChatRoom({ groupSelected }) {
 
   // const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date', 'desc');
   const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date', 'desc');;
@@ -112,7 +112,7 @@ function ChatRoom({groupSelected}) {
     );
 
   }, [groupSelected]);
-  
+
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -164,7 +164,7 @@ function ChatMessage(props) {
   )
 }
 
-function NavBar({updateGroup}) {
+function NavBar({ updateGroup }) {
 
   var user = firebase.auth().currentUser;
   var name, email, photoUrl, uid, emailVerified;
@@ -205,7 +205,7 @@ function NavBar({updateGroup}) {
     <div class="nav">
       <div class="left">
         <FcMenu class="hamburger" onClick={toggleOverlay} />
-        {overlayIsOpen && <OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected}/>}
+        {overlayIsOpen && <OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />}
       </div>
       <div class="middle">
         <img src={Logo} alt="" class="logo" />
@@ -231,12 +231,12 @@ function NavBar({updateGroup}) {
   )
 }
 
-function OverLay({updateGroup, selected, setSelected}) {
+function OverLay({ updateGroup, selected, setSelected }) {
 
   //iterate over documnts in group collection and render a chatroomname comnponent for each collection
   const ref = firebase.firestore().collection("groups").orderBy('date');
   const [groups, setGroups] = useState([]);
-  
+
 
 
   useEffect(() => {
@@ -259,9 +259,8 @@ function OverLay({updateGroup, selected, setSelected}) {
   return (
 
     <div className="overlay">
-      {groups && groups.map(({id, data}) => {
-        // console.log('group from iteration', group)
-        return <ChatRoomName key={id} name={data.name} updateGroup={updateGroup} id={id} selected={selected} setSelected={setSelected}/>
+      {groups && groups.map(({ id, data }) => {
+        return <ChatRoomName key={id} name={data.name} updateGroup={updateGroup} id={id} selected={selected} setSelected={setSelected} />
       })}
       <CreateGroup />
     </div>
@@ -269,23 +268,20 @@ function OverLay({updateGroup, selected, setSelected}) {
 }
 
 
-function ChatRoomName({name, updateGroup, id, selected, setSelected}) {
+function ChatRoomName({ name, updateGroup, id, selected, setSelected }) {
 
-  // const [selected, setSelected] = useState(null);
-  // const chatClassName = selected === id ? 'chat-selected' : 'chat-select';
-  
+
+
   return (
     <div className={selected === id ? 'chat-selected' : 'chat-select'}
-    
-    onClick={
-      () => {
-        updateGroup(id)
-        setSelected(id);
-        // console.log(chatClassName, id)
-      }
+
+      onClick={
+        () => {
+          updateGroup(id)
+          setSelected(id);
+        }
       }>
       {name}
-      {/* <button onClick={() => updateGroup(id)}>Update Group Name</button> */}
     </div>
   )
 }
