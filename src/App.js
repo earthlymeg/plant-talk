@@ -248,25 +248,24 @@ function CreateGroup() {
 
 
 
-  const addGroup = () => {
-    const { uid } = auth.currentUser;
+  const addGroup = (data) => {
+    console.log(data)
+    firebase.firestore().collection("groups").add({
+      created_by: data.createdBy,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+      name: data.groupName,
+      type: data.type,
+      members: data.members,
 
-    //   firebase.firestore().collection("groups").add({
-    //     created_by: uid,
-    //     date: firebase.firestore.FieldValue.serverTimestamp(),
-    //     uid,
-    //     name:
-    //     type:
-
-    //   }).then(() => console.log('successful post by', auth.currentUser.displayName))
-    //     .catch(err => console.log(err))
+    }).then(() => console.log('successful post by', auth.currentUser.displayName))
+      .catch(err => console.log(err))
   }
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     data['createdBy'] = auth.currentUser.uid;
     data['members'] = [auth.currentUser.uid];
-    alert(JSON.stringify(data));
+    addGroup(data);
   }
 
 
@@ -297,9 +296,9 @@ function CreateGroup() {
 
         <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("Name of Group")} />
+          <input {...register("groupName")} />
           <select {...register("type")} id="groups">
-          <option value="Just For Fun">Just For Fun</option>
+            <option value="Just For Fun">Just For Fun</option>
             <option value="Business">Business</option>
             <option value="Love">Love</option>
             <option value="Family">Family</option>
