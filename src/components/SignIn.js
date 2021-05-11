@@ -1,8 +1,6 @@
 import firebase from './Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { FcGoogle } from "react-icons/fc";
 import Logo from '../assets/plant-talk-logo.png'
-const auth = firebase.auth();
 
 
 function SignIn() {
@@ -10,6 +8,7 @@ function SignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   }
+  const auth = firebase.auth();
 
   return (
     <div className="sign-in">
