@@ -17,19 +17,26 @@ function App() {
 
   const [user] = useAuthState(auth);
   const [currentChat, setCurrentChat] = useState('')
+  const [overlayIsOpen, setOverlayOpen] = useState(false);
+
   const updateGroup = (e) => {
     setCurrentChat(e);
   }
+
+  function toggleOverlay() {
+    setOverlayOpen(!overlayIsOpen);
+  }
+
   return (
     <div className="App">
-      {user && <NavBar updateGroup={updateGroup} />}
+      {user && <NavBar updateGroup={updateGroup} overlayIsOpen={overlayIsOpen} toggleOverlay={toggleOverlay}/>}
       <section>
-        {user ? <ChatRoom groupSelected={currentChat} /> : <SignIn />}
+        {user ? <ChatRoom groupSelected={currentChat} overlayIsOpen={overlayIsOpen}/> : <SignIn />}
       </section>
     </div>
   );
 
 }
- 
+
 
 export default App;

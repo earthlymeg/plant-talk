@@ -8,7 +8,7 @@ import OverLay from './Overlay';
 const auth = firebase.auth();
 
 
-function NavBar({ updateGroup }) {
+function NavBar({ updateGroup,toggleOverlay,overlayIsOpen }) {
 
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, uid, emailVerified;
@@ -37,7 +37,6 @@ function NavBar({ updateGroup }) {
     }
     var subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [overlayIsOpen, setOverlayOpen] = useState(false);
     function openModal() {
         setIsOpen(true);
     }
@@ -50,11 +49,6 @@ function NavBar({ updateGroup }) {
     function closeModal() {
         setIsOpen(false);
     }
-
-    function toggleOverlay() {
-        setOverlayOpen(!overlayIsOpen);
-    }
-
 
     return (
         <div class="nav">

@@ -1,7 +1,5 @@
 body {
-  background-color: rgb(252, 252, 252);
-  background-color: #dfa375;
-  background-image: linear-gradient(315deg, #dfa375 0%, #c58e7f 74%);
+  background-color: rgb(255, 255, 255);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -106,12 +104,7 @@ p {
   margin-right: 1rem;
 }
 
-form {
-  margin-top: 3em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 span {
   color: rgb(216, 216, 216);
@@ -126,30 +119,74 @@ input {
   padding: 1.5rem 2rem;
   border-radius: 0.9rem;
   background-color: rgba(255, 255, 255, 0.678);
-  border: none;
-  width: 60%;
-  border-bottom: 0.3rem solid transparent;
-  transition: all 0.3s;
+  border: solid grey;
+  width: 80%;
+}
+.chat-room{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* float: right; */
+  width: 90%;
+  background-color: red;
+  /* position: relative; */
+
 }
 
-.all-messages {
+.chat-room-width{
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  width: 90%; */
+
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* float: right; */
   width: 90%;
-  height: 26em;
+  background-color: red;
+  
+}
+
+form {
+  margin-top: 3em;
+  width: 60%;
+
+}
+.all-messages {
+  width: 100%;
+  height: 55vh;
+  overflow: scroll;
+  padding-top: 1em;
+  padding-bottom: 3em;
+  border-bottom: solid grey;
+  /* margin-left: 3rem; */
+  background-color: rgba(255, 255, 255, 0.678) !important; 
+  right: 0;
+
+}
+
+.all-messages-width {
+  float: right;
+  width: 75%;
+  height: 55vh;
   overflow: scroll;
   padding-top: 1em;
   padding-bottom: 3em;
   flex-direction: column-reverse;
-  border-bottom: solid rgba(139, 139, 139, 0.39);
-  border-top: solid rgba(139, 139, 139, 0.39);
+  border-bottom: solid grey;
   border-radius: 10px;
-  margin-left: 3rem;
-  background-color: rgba(255, 255, 255, 0.678);
+  margin-right: 1rem;
+  background-color: rgba(255, 255, 255, 0.678) !important;
 }
 
 button {
   margin: auto;
-  display: block;
+  display: inline-block;
 }
 
 .submit-button {
@@ -173,11 +210,10 @@ button {
 .nav {
   display: flex;
   justify-content: space-between;
-  /* background: rgb(0,36,27); */
-  /* background: linear-gradient(90deg, rgba(0,36,27,1) 0%, rgba(9,121,57,1) 35%, rgba(194,255,174,1) 100%); */
   margin-bottom: 2rem;
   height: 5.5rem;
-  /* width: 90%; */
+  padding-bottom: 1%;
+  border-bottom: solid rgb(133, 133, 133);
 }
 
 .left {
@@ -214,34 +250,29 @@ button {
 }
 
 .overlay {
+  margin-top: 3.3rem;
   height: 80vh;
-  background-color: rgba(0, 56, 12, 0.699);
-  width: 250px;
+  background-color: rgba(255, 255, 255, 0.678) !important;
+  width: 18%;
   position: absolute;
-  border-radius: 10px;
-  transition: height 0.25s linear;
+  border-right: solid grey;
 }
 
 .chat-select {
   height: 1em;
-  padding: 1em;
-  color: white;
-  border-style: solid;
-  border-color: rgba(128, 128, 128, 0.507);
-  border-radius: 10px;
+  color: black;
+  padding: 1.5rem;
+  /* margin-top: 1rem; */
   cursor: pointer;
 }
 
 .chat-selected {
   height: 1em;
-  padding: 1em;
-  color: white;
-  border-style: solid;
-  border-color: rgba(128, 128, 128, 0.507);
-  border-radius: 10px;
+  padding: 1.5rem;
+  /* margin-top: 1rem; */
+  color: black;
   cursor: pointer;
-  background-color: pink;
-
+  background-color: rgb(119, 119, 119);
 }
 
 .chat-select:hover {
