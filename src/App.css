@@ -127,10 +127,9 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* float: right; */
-  width: 90%;
-  background-color: red;
-  /* position: relative; */
+  float: right;
+  width: 82%;
+  position: relative;
 
 }
 
@@ -146,7 +145,6 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* float: right; */
   width: 90%;
   background-color: red;
   

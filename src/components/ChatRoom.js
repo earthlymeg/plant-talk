@@ -39,7 +39,7 @@ function ChatRoom({ groupSelected, overlayIsOpen }) {
     }
 
     return (
-        <div className={overlayIsOpen ? "chat-room-width": "chat-room"}>
+        <div className="chat-room">
           <div className="all-messages">
             {messages && messages.map(msg =>
               <ChatMessage key={msg.id} message={msg} date={msg.date} username={msg.username} />

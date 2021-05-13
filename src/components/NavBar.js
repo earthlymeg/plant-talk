@@ -53,8 +53,8 @@ function NavBar({ updateGroup,toggleOverlay,overlayIsOpen }) {
     return (
         <div class="nav">
             <div class="left">
-                <FcMenu class="hamburger" onClick={toggleOverlay} />
-                {overlayIsOpen && <OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />}
+                <FcMenu class="hamburger" />
+                {<OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />}
             </div>
             <div class="middle">
                 <img src={Logo} alt="" class="logo" />
