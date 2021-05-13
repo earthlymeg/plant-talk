@@ -51,16 +51,16 @@ function NavBar({ updateGroup,toggleOverlay,overlayIsOpen }) {
     }
 
     return (
-        <div class="nav">
-            <div class="left">
-                <FcMenu class="hamburger" />
+        <div className="nav">
+            <div className="left">
+                <FcMenu className="hamburger" />
                 {<OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />}
             </div>
-            <div class="middle">
-                <img src={Logo} alt="" class="logo" />
+            <div className="middle">
+                <img src={Logo} alt="" className="logo" />
 
             </div>
-            <div class="right">
+            <div className="right">
                 {photoUrl && <img src={photoUrl} alt="" className="prof-photo" onClick={openModal} />}
                 <Modal
                     isOpen={modalIsOpen}

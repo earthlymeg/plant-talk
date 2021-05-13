@@ -31,6 +31,7 @@ function ChatRoom({ groupSelected, overlayIsOpen }) {
         uid,
         username: auth.currentUser.displayName,
         groupId: groupSelected,
+        thumbnail: auth.currentUser.photoURL,
   
       }).then(() => console.log('successful post by', auth.currentUser.displayName))
         .catch(err => console.log(err))
@@ -41,8 +42,14 @@ function ChatRoom({ groupSelected, overlayIsOpen }) {
     return (
         <div className="chat-room">
           <div className="all-messages">
-            {messages && messages.map(msg =>
-              <ChatMessage key={msg.id} message={msg} date={msg.date} username={msg.username} />
+            {messages && messages.map((msg, i) =>
+              <ChatMessage 
+              key={i} 
+              message={msg} 
+              date={msg.date} 
+              username={msg.username}
+              thumbnail={msg.thumbnail}
+              />
             )}
           </div>
     

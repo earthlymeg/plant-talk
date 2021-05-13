@@ -29,8 +29,8 @@ function OverLay({ updateGroup, selected, setSelected }) {
     return (
   
       <div className="overlay">
-        {groups.length > 0 && setSelected(groups[0].id)}
-        Chat Rooms
+        {/* {groups.length > 0 && console.log(groups[0])} */}
+        <div className="overlay_title">Chat</div>
         {groups && groups.map(({ id, data }) => {
           return <ChatRoomName key={id} name={data.name} updateGroup={updateGroup} id={id} selected={selected} setSelected={setSelected} />
         })}
