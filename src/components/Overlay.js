@@ -23,7 +23,7 @@ function OverLay({ updateGroup, selected, setSelected }) {
       }
       )
   
-    }, []);
+    });
   
   
     return (

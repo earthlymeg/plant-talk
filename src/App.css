@@ -14,7 +14,7 @@ body {
   src: url(./assets/fonts/Roboto-Regular.ttf);
 }
 
-.App{
+.App {
   font-family: Roboto;
 }
 .sign-in {
@@ -97,7 +97,6 @@ p {
   color: white;
   border-radius: 10px;
   padding: 0.8rem;
-  
 }
 .message {
   margin: 2px;
@@ -110,22 +109,21 @@ p {
   margin-left: 1rem;
 }
 
-.sent .msg-photo{
+.sent .msg-photo {
   border-radius: 50px;
   height: 3rem;
   width: 3rem;
   float: right;
   position: relative;
-  top: .5rem;
+  top: 0.5rem;
 }
 
-.received .msg-photo{
+.received .msg-photo {
   border-radius: 50px;
   height: 3rem;
   width: 3rem;
   position: relative;
-  top: .5rem;
-  
+  top: 0.5rem;
 }
 
 .received {
@@ -133,10 +131,7 @@ p {
   text-align: left;
   margin-left: 1rem;
   margin-right: 1rem;
-  
 }
-
-
 
 span {
   color: rgb(216, 216, 216);
@@ -154,7 +149,7 @@ input {
   border: solid var(--main-grey);
   width: 80%;
 }
-.chat-room{
+.chat-room {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,23 +157,20 @@ input {
   float: right;
   width: 82%;
   position: relative;
-
 }
 
-.chat-room-width{
+.chat-room-width {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
   background-color: red;
-  
 }
 
 form {
   margin-top: 3em;
   width: 60%;
-
 }
 .all-messages {
   width: 100%;
@@ -188,9 +180,9 @@ form {
   padding-bottom: 3em;
   border-bottom: solid var(--main-grey);
   /* margin-left: 3rem; */
-  background-color: rgba(255, 255, 255, 0.678) !important; 
+  background-color: rgba(255, 255, 255, 0.678) !important;
   right: 0;
-
+  border-radius: 10px;
 }
 
 .all-messages-width {
@@ -237,6 +229,7 @@ button {
   height: 5.5rem;
   padding-bottom: 1%;
   border-bottom: solid var(--main-grey);
+  vertical-align: middle
 }
 
 .left {
@@ -246,6 +239,8 @@ button {
 }
 
 .middle {
+  position: fixed;
+  left: 50%;
 }
 
 .prof-photo {
@@ -279,11 +274,9 @@ button {
   width: 18%;
   position: absolute;
   border-right: solid var(--main-grey);
-
-  
 }
 
-.overlay_title{
+.overlay_title {
   font-size: 1.5rem;
   padding-bottom: 1rem;
   color: black;
@@ -291,6 +284,41 @@ button {
   border-bottom: solid var(--main-grey);
   border-width: 100;
   padding-left: 1rem;
+}
+
+.right{
+  width: 100px;
+  -webkit-transition: width .35s;
+  overflow: hidden;
+
+}
+
+
+
+.sign-out-button {
+  text-decoration: none;
+	float: right;
+  padding: 12px;
+  margin: 15px;
+  color: white;
+  background-color:  rgb(23, 178, 184);
+  border-radius: 10px;
+  transition: width .35s;
+  top: 1rem;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+
+}
+
+.right:hover {
+  width: 200px;
+}
+
+.right:hover .logout{
+  opacity: .9;
+}
+
+.sign-out-button:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.349);
 
 }
 
@@ -301,7 +329,6 @@ button {
   /* margin-top: 1rem; */
   cursor: pointer;
   font-weight: 500;
-
 }
 
 .chat-selected {
