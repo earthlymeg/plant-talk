@@ -149,7 +149,7 @@ input {
   border: solid var(--main-grey);
   width: 80%;
 }
-.chat-room {
+/* .chat-room {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,7 +157,40 @@ input {
   float: right;
   width: 82%;
   position: relative;
+  background-color: rgb(167, 167, 167);
+
+} */
+
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 85vh;
+  margin: 0;
+  margin-top: -2rem;
+  background-color: rgb(167, 167, 167);
+  width: 100vw;
+  height: 87vh;
 }
+form {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+/* 
+
+input {
+  margin:0;
+  margin-left: .5rem;
+  height: 12%;
+  width: 80%;
+  float: left;
+  padding: 1.5rem;
+  display: inline;
+
+} */
 
 .chat-room-width {
   display: flex;
@@ -167,18 +200,17 @@ input {
   width: 90%;
   background-color: red;
 }
-
+/* 
 form {
   margin-top: 3em;
   width: 60%;
-}
+} */
 .all-messages {
   width: 100%;
   height: 55vh;
   overflow: scroll;
   padding-top: 1em;
   padding-bottom: 3em;
-  border-bottom: solid var(--main-grey);
   /* margin-left: 3rem; */
   background-color: rgba(255, 255, 255, 0.678) !important;
   right: 0;
@@ -206,8 +238,8 @@ button {
 
 .submit-button {
   border-style: none;
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   cursor: pointer;
   border-radius: 50%;
   background-color: rgb(23, 178, 184);
@@ -216,7 +248,12 @@ button {
   color: white;
   margin: 0;
   padding: 0;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  transform: translate(-130%, 50%);
+
+
 }
+
 
 .submit-button:hover {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
@@ -270,7 +307,7 @@ button {
 .overlay {
   margin-top: 3.3rem;
   height: 80vh;
-  background-color: rgba(255, 255, 255, 0.678) !important;
+  background-color: rgba(255, 255, 255, 0.678);
   width: 18%;
   position: absolute;
   border-right: solid var(--main-grey);
@@ -284,6 +321,7 @@ button {
   border-bottom: solid var(--main-grey);
   border-width: 100;
   padding-left: 1rem;
+  margin-top: 1rem;
 }
 
 .right{
@@ -396,29 +434,153 @@ button {
   }
 }
 
-@media only screen and (max-width: 380px) {
-  .all-messages {
-    height: 28em;
-    /* width: 18em; */
-  }
-}
+.menu-enter {
+  max-height: 0px;
+  -webkit-transition: max-height 1s ease;
+  overflow: hidden; }
 
-@media only screen and (max-width: 415px) {
-  .all-messages {
-    height: 20em;
-    margin-left: 1rem;
-    /* width: 18em; */
-  }
-}
+.menu-enter.menu-enter-active {
+  height: auto;
+  max-height: 100px; }
 
-@media only screen and (max-width: 350px) {
-  .all-messages {
-    height: 1em;
+.menu-leave {
+  max-height: 100px;
+  -webkit-transition: max-height 1s ease; }
+
+.menu-leave.menu-leave-active {
+  overflow: hidden;
+  max-height: 0px; }
+
+
+
+@media only screen and (max-width: 360px) and (max-height: 640px) {
+
+  body{
+    overflow-y: hidden;
   }
 
+  .middle{
+    left: 35%;
+  }  
+ 
+   .middle .logo {
+    height: 5.5rem;
+  }
+
+  .chat-room {
+    height: 85vh;
+    margin: 0;
+    /* margin-right: 1.75rem; */
+    margin-top: -2rem;
+    background-color: rgb(167, 167, 167);
+    width: 100vw;
+  }
+
+  form {
+    height: 20%;
+    width: 100%;
+    margin-top: .5rem;
+    display: flex;
+  }
+
+  input {
+    margin:0;
+    margin-left: .5rem;
+    height: 12%;
+    width: 80%;
+    float: left;
+    padding: 1.5rem;
+    display: inline;
+
+  }
   .submit-button {
-    height: 3rem;
-    width: 3rem;
+    margin-left: -15%;
+    height: 2.5rem;
+    width: 2.5rem;
     font-size: 1rem;
+    margin-top: .75rem;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   }
+
+  .overlay {
+    z-index: 1;
+    width: 100vw;
+    background-color: rgb(161, 161, 161);
+    margin-top: .5rem;
+    height: 90vh;
+  }
+  .chat-select {
+    padding: 1rem;
+    border-bottom: solid var(--main-grey);;
+  }
+  
 }
+
+@media only screen and (max-width: 563px) and (max-height: 684px) {
+  .chat-room {
+    height: 85vh;
+    margin: 0;
+    /* margin-right: 1.75rem; */
+    margin-top: -2rem;
+    background-color: rgb(167, 167, 167);
+    width: 100vw;
+  }
+  form {
+    height: 20%;
+    width: 100%;
+    margin-top: .5rem;
+    display: flex;
+  }
+
+  input {
+    margin:0;
+    margin-left: .5rem;
+    height: 12%;
+    width: 80%;
+    float: left;
+    padding: 1.5rem;
+    display: inline;
+
+  }
+
+}
+
+@media only screen and (max-width: 1026px) and (max-height: 850px) {
+  input {
+    height: 2rem;
+    margin-top: 0;
+  }
+  form {
+    margin-top: .5rem;
+  }
+
+  .submit-button{
+    transform: translate(-130%, 30%);
+
+  }
+  
+}
+
+
+/* Mobile: 360 x 640
+.all-messages {
+  width: 100%;
+  height: 55vh;
+  overflow: scroll;
+  padding-top: 1em;
+  padding-bottom: 3em;
+  border-bottom: solid var(--main-grey);
+  margin-left: 3rem;
+  background-color: rgba(255, 255, 255, 0.678) !important;
+  right: 0;
+  border-radius: 10px;
+}
+
+
+Mobile: 375 x 667
+Mobile: 360 x 720
+iPhone X: 375 x 812
+Pixel 2: 411 x 731
+Tablet: 768 x 1024
+Laptop: 1366 x 768
+High-res laptop or desktop: 1920 x 1080 */

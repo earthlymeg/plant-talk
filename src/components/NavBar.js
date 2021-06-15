@@ -5,9 +5,9 @@ import Logo from '../assets/plant-talk-logo.png'
 import SignOut from './SignOut';
 import OverLay from './Overlay';
 const auth = firebase.auth();
+// import { ReactCSSTransitionGroup } from 'react-transition-group';
 
-
-function NavBar({ updateGroup,toggleOverlay,overlayIsOpen }) {
+function NavBar({ updateGroup, toggleOverlay, overlayIsOpen }) {
 
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, uid, emailVerified;
@@ -18,22 +18,31 @@ function NavBar({ updateGroup,toggleOverlay,overlayIsOpen }) {
         email = user.email;
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
-        uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-        // this value to authenticate with your backend server, if
-        // you have one. Use User.getToken() instead.
+        uid = user.uid;
     }
+
+    let menu;
+    if(overlayIsOpen) {
+      menu = <OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />
+    } else {
+      menu = "";
+    }
+
     return (
-        <div className="nav">
-            <div className="left">
-                <FcMenu className="hamburger" />
-                {<OverLay updateGroup={updateGroup} selected={selected} setSelected={setSelected} />}
+        <div className="nav" >
+            <div className="left" id="menu">
+                <FcMenu className="hamburger"
+                    onClick={toggleOverlay}
+                />
+
+                
             </div>
             <div className="middle">
                 <img src={Logo} alt="" className="logo" />
 
             </div>
             <div className="right">
-                {photoUrl && <img src={photoUrl} alt="" className="prof-photo"/>}
+                {photoUrl && <img src={photoUrl} alt="" className="prof-photo" />}
                 <SignOut />
 
             </div>
