@@ -7,11 +7,7 @@ function OverLay({ updateGroup, selected, setSelected }) {
   //iterate over documnts in group collection and render a chatroomname comnponent for each collection
   const ref = firebase.firestore().collection("groups").orderBy('date');
   const [groups, setGroups] = useState([]);
-  const [media, setMedia] = useState(false)
-  const mql = window.matchMedia('(max-width: 360px)');
-  let mobileView = mql.matches;
-
-
+ 
   useEffect(() => {
     ref.onSnapshot((snap) => {
       setGroups(snap.docs.map(doc => {
@@ -27,16 +23,7 @@ function OverLay({ updateGroup, selected, setSelected }) {
     )
     
   });
-  useEffect(() => {
-    
-    if (mobileView) {
-      setMedia(true);
-      console.log('setting media to true')
-    } else if (!mobileView) {
-      setMedia(false);
-      console.log('unsetting media')
-    }
-  }, [media]);
+
 
   return (
     //lets render a classname based on screen size 

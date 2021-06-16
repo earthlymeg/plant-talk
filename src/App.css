@@ -149,17 +149,6 @@ input {
   border: solid var(--main-grey);
   width: 80%;
 }
-/* .chat-room {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  float: right;
-  width: 82%;
-  position: relative;
-  background-color: rgb(167, 167, 167);
-
-} */
 
 .chat-room {
   display: flex;
