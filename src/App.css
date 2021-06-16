@@ -294,18 +294,22 @@ button {
 }
 
 .overlay {
-  margin-top: 3.3rem;
-  height: 80vh;
-  background-color: rgba(255, 255, 255, 0.678);
-  width: 18%;
+  margin-top: .7rem;
+  height: 90vh;
+  background-color: rgba(107, 107, 107, 0.76);
+  width: 25%;
   position: absolute;
   border-right: solid var(--main-grey);
+  z-index: 100;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  color: white;
 }
 
 .overlay_title {
   font-size: 1.5rem;
   padding-bottom: 1rem;
-  color: black;
+  color: white;
   font-weight: 600;
   border-bottom: solid var(--main-grey);
   border-width: 100;
@@ -351,11 +355,15 @@ button {
 
 .chat-select {
   height: 1em;
-  color: black;
+  color: white;
   padding: 1.5rem;
-  /* margin-top: 1rem; */
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.438);
+  border-radius: 10px;
   font-weight: 500;
+  margin-top: .5rem;
+  font-weight: 600;
+  
 }
 
 .chat-selected {
@@ -492,7 +500,7 @@ button {
   }
 
   .overlay {
-    z-index: 1;
+    /* z-index: 100; */
     width: 100vw;
     background-color: rgb(161, 161, 161);
     margin-top: .5rem;
@@ -530,6 +538,11 @@ button {
     padding: 1.5rem;
     display: inline;
 
+  }
+
+  .overlay {
+    width: 50%;
+    height: 85vh;
   }
 
 }
