@@ -1,5 +1,5 @@
 import firebase from './Firebase';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FcMenu } from "react-icons/fc";
 import Logo from '../assets/plant-talk-logo.png'
 import SignOut from './SignOut';

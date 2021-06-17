@@ -258,16 +258,6 @@ button {
   vertical-align: middle
 }
 
-.left {
-}
-
-.right {
-}
-
-.middle {
-  position: fixed;
-  left: 50%;
-}
 
 .prof-photo {
   border-radius: 50px;
