@@ -25,7 +25,6 @@ function App() {
 
   function toggleOverlay() {
     setOverlayOpen(!overlayIsOpen);
-    console.log('overlay open?',overlayIsOpen)
   }
 
   return (
