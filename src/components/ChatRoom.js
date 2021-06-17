@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { IoSend } from 'react-icons/io5';
 import ChatMessage from './ChatMessage';
 
-function ChatRoom({ groupSelected }) {
+function ChatRoom({ groupSelected, overlayIsOpen }) {
 
     const auth = firebase.auth();
 
-    const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date', 'desc');;
+    const ref = firebase.firestore().collection("messages").where("groupId", "==", groupSelected).orderBy('date');
   
     const [messages, setMessages] = useState([]);
     const [formVal, setFormVal] = useState('');
@@ -31,6 +31,7 @@ function ChatRoom({ groupSelected }) {
         uid,
         username: auth.currentUser.displayName,
         groupId: groupSelected,
+        thumbnail: auth.currentUser.photoURL,
   
       }).then(() => console.log('successful post by', auth.currentUser.displayName))
         .catch(err => console.log(err))
@@ -39,10 +40,16 @@ function ChatRoom({ groupSelected }) {
     }
 
     return (
-        <>
+        <div className="chat-room">
           <div className="all-messages">
-            {messages && messages.map(msg =>
-              <ChatMessage key={msg.id} message={msg} date={msg.date} username={msg.username} />
+            {messages && messages.map((msg, i) =>
+              <ChatMessage 
+              key={i} 
+              message={msg} 
+              date={msg.date} 
+              username={msg.username}
+              thumbnail={msg.thumbnail}
+              />
             )}
           </div>
     
@@ -50,7 +57,7 @@ function ChatRoom({ groupSelected }) {
             <input placeholder="Your message..." value={formVal} onChange={(e) => setFormVal(e.target.value)} />
             <button className="submit-button" type="submit" onClick={sendMessage}><IoSend /></button>
           </form>
-        </>
+        </div>
       )
     }
 
