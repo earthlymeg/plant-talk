@@ -27,7 +27,10 @@ function CreateGroup() {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      borderRadius: '10px',
+      backgroundColor: '#A9A9A9',
+      
     }
   };
 
@@ -77,10 +80,10 @@ function CreateGroup() {
         >
   
           <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("groupName")} />
+          <form onSubmit={handleSubmit(onSubmit)} className="group-form">
+            <input {...register("groupName")} className="group-input"/>
   
-            <input type="submit" />
+            <input type="submit" className="group-submit"/>
           </form>
           <button onClick={closeModal}>close</button>
   
