@@ -7,6 +7,14 @@ import Modal from 'react-modal';
 
 const auth = firebase.auth();
 
+//todo
+//make z index highest
+//style border of modal
+//stlye close button of modal
+//style submit button of modal
+//style all borders of modal
+//style input form of modal 
+
 
 
 function CreateGroup() {
@@ -71,13 +79,7 @@ function CreateGroup() {
           <h2 ref={_subtitle => (subtitle = _subtitle)}></h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input {...register("groupName")} />
-            <select {...register("type")} id="groups">
-              <option value="Just For Fun">Just For Fun</option>
-              <option value="Business">Business</option>
-              <option value="Love">Love</option>
-              <option value="Family">Family</option>
-              <option value="Friends">Friends</option>
-            </select>
+  
             <input type="submit" />
           </form>
           <button onClick={closeModal}>close</button>

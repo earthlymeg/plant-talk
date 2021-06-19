@@ -15,7 +15,7 @@ const firestore = firebase.firestore();
 function App() {
 
   const [user] = useAuthState(auth);
-  const [currentChat, setCurrentChat] = useState('OQRQFKXnlVwK7dd2mHBZ')
+  const [currentChat, setCurrentChat] = useState(null)
   const [overlayIsOpen, setOverlayOpen] = useState(false);
 
   const updateGroup = (e) => {
