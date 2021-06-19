@@ -30,7 +30,6 @@ function CreateGroup() {
       created_by: data.createdBy,
       date: firebase.firestore.FieldValue.serverTimestamp(),
       name: data.groupName,
-      type: data.type,
       members: data.members,
 
     }).then(() => console.log('successful post by', auth.currentUser.displayName))
@@ -75,7 +74,7 @@ function CreateGroup() {
         <form onSubmit={handleSubmit(onSubmit)} className="group-form">
           <input {...register("groupName")} className="group-input" />
 
-          <input type="submit" className="group-submit" />
+          <input type="submit" className="group-submit"/>
         </form>
         {/* <button onClick={closeModal}>close</button> */}
 
