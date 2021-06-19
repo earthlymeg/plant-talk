@@ -5,6 +5,7 @@ import Logo from '../assets/plant-talk-logo.png'
 import SignOut from './SignOut';
 import OverLay from './Overlay';
 const auth = firebase.auth();
+
 // import { ReactCSSTransitionGroup } from 'react-transition-group';
 
 function NavBar({ updateGroup, toggleOverlay, overlayIsOpen }) {
